@@ -1,0 +1,26 @@
+#include<iostream>
+using namespace std;
+
+void exciting(int a, int b, int* add_large, int* add_small)
+{
+    if(a>b)
+    {
+        *add_large=a;
+        *add_small=b;
+    }
+    else
+    {
+        *add_large=b;
+        *add_small=a;
+    }
+}
+ int main()
+ {
+ int great, small, x, y;
+ cout<<"Enter two numbers"<<endl;
+ cin>>x>>y;
+ 
+ exciting(x,y, &great, &small);
+ cout<<"The greater number is :"<<x<<" The smaller number is :"<<y<<endl;
+ return 0;
+ }

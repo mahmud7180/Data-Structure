@@ -1,0 +1,56 @@
+#include<iostream>
+using namespace std;
+void swapfunction(int *A,int *B,int x )
+{
+    int xo=x,tempo;
+    for(int i=0;i<xo;i++)
+    {
+        tempo=*(A+i);
+        *(A+i)=*(B+i);
+        *(B+i)=tempo;
+    }
+
+}
+int main()
+{
+    int *A,*B,temp,x;
+    cout<<"How many numbers to be entered in array : ";
+    cin>>x;
+    A=new int[x];
+    B=new int[x];
+    cout<<"Enter First array : ";
+    for(int i=0;i<x;i++)
+
+        cin>>A[i];
+
+    cout<<"Enter Second array : ";
+
+    for(int i=0;i<x;i++)
+
+        cin>>B[i];
+
+    cout<<"Before swapping "<<endl<<"First Array : ";
+
+    for(int i=0;i<x;i++)
+
+        cout<<A[i]<<" ";
+
+    cout<<endl<<"Second Array : ";
+
+    for(int i=0;i<x;i++)
+
+        cout<<B[i]<<" ";
+
+    swapfunction(A,B,x);
+
+
+     cout<<endl<<endl<<"After swapping "<<endl<<"First Array : ";
+    for(int i=0;i<x;i++)
+        cout<<A[i]<<" ";
+    cout<<endl<<"Second Array : ";
+    for(int i=0;i<x;i++)
+        cout<<B[i]<<" ";
+
+
+
+ 

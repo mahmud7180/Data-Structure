@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+struct Student
+{
+        int id;
+        int ye;
+        string name;
+        float cgpa;
+        int semester;
+};
+
+//void add_students(int n, int m);
+
+int main()
+{
+    Student arr[10];
+    arr[0] = {1, 1998, "Bill", 3.99, 4};
+    arr[1] = {2, 1993, "Meen", 3.89, 5};
+    arr[2] = {3, 1997, "Veen", 3.80, 3};
+    for(int i=0; i<3; i++)
+    {
+        cout << "Id: "<<arr[i].id << endl;
+        cout << "Name: "<<arr[i].name << endl;
+        cout << "Semester: "<<arr[i].semester << endl;
+        cout << "CGPA: "<<arr[i].cgpa<< endl;
+        cout << "YE: "<<arr[i].ye << endl;
+        cout << "-----------------------------------------" << endl;
+    }
+    return 0;
+}

@@ -1,0 +1,173 @@
+#include <iostream>
+
+using namespace std;
+
+struct node
+{
+    int value;
+    node *left;
+    node *right;
+};
+
+class bst
+{
+public:
+    node *create(int v)
+    {
+        node *temp=new node;
+        temp->value=v;
+        temp->left=temp->right=NULL;
+        return temp;
+    }
+    void insertNode(node *&root, int v)
+    {
+        if(root==NULL)
+        {
+            root=create(v);
+        }
+        else if(v<root->value)
+        {
+            insertNode(root->left,v);
+        }
+        else
+        {
+            insertNode(root->right,v);
+        }
+    }
+    node* FindMin(node* root)
+    {
+        while(root->left != NULL) root = root->left;
+        return root;
+    }
+    node *Delete(struct node *root, int data)
+    {
+        if(root == NULL)
+        {
+            return root;
+        }
+        else if(data < root->value)
+        {
+            root->left = Delete(root->left,data);
+        }
+        else if (data > root->value)
+        {
+            root->right = Delete(root->right,data);
+        }
+        else
+        {
+            if(root->left == NULL && root->right == NULL)
+            {
+                delete root;
+                root = NULL;
+            }
+            else if(root->left == NULL)
+            {
+                node *temp = root;
+                root = root->right;
+                delete temp;
+            }
+            else if(root->right == NULL)
+            {
+                node *temp = root;
+                root = root->left;
+                delete temp;
+            }
+            else
+            {
+                node *temp = FindMin(root->right);
+                root->value = temp->value;
+                root->right = Delete(root->right,temp->value);
+            }
+        }
+        return root;
+    }
+    void displayInorder(node *root)
+    {
+        if(root!=NULL)
+        {
+            displayInorder(root->left);
+            cout<<root->value<<" ";
+            displayInorder(root->right);
+        }
+    }
+    void displayPreorder(node *root)
+    {
+        if(root!=NULL)
+        {
+            cout<<root->value<<" ";
+            displayPreorder(root->left);
+            displayPreorder(root->right);
+        }
+    }
+    void displayPostorder(node *root)
+    {
+        if(root!=NULL)
+        {
+            displayPostorder(root->left);
+            displayPostorder(root->right);
+            cout<<root->value<<" ";
+        }
+    }
+    void searchNode(node *&root, int x)
+    {
+        if(root!=NULL)
+        {
+            if(root->value==x)
+            {
+                cout<<"Value found"<<endl;
+            }
+            else if(x<root->value)
+            {
+                searchNode(root->left, x);
+            }
+            else if(x>root->value)
+            {
+                searchNode(root->right, x);
+            }
+        }
+        else
+        {
+            cout<<"Value not found"<<endl;
+        }
+    }
+    int minValue(node *&root)
+    {
+        while(root->left!=NULL)
+        {
+            root=root->left;
+        }
+        cout<<"Min value: "<<root->value<<endl;
+    }
+};
+int main()
+{
+    node *root=NULL;
+    bst *obj;
+    obj=new bst;
+    int n,data,s,d;
+    cout<<"Enter number of data in your tree"<<endl;
+    cin>>n;
+    cout<<"Enter data where 1st data is the root of the tree"<<endl;
+    for(int i=0; i<n; i++)
+    {
+        cin>>data;
+        obj->insertNode(root,data);
+    }
+    cout<<"Enter value to delete"<<endl;
+    cin>>d;
+    root = obj->Delete(root,d);
+    cout<<"Inorder: ";
+    obj->displayInorder(root);
+    cout<<endl;
+    cout<<"Preorder: ";
+    obj->displayPreorder(root);
+    cout<<endl;
+    cout<<"Postorder: ";
+    obj->displayPostorder(root);
+    cout<<endl;
+    cout<<"Enter value to search"<<endl;
+    cin>>s;
+    obj->searchNode(root, s);
+    obj->minValue(root);
+    return 0;
+}

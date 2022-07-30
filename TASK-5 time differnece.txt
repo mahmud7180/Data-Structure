@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+int main() 
+{
+   int hour1, min1, sec1;
+   int hour2, min2, sec2;
+   int diff_hour, diff_minute, diff_second;
+
+   cout << "Enter time period 1" << endl;
+   cout << "Enter hours, minutes and seconds respectively: "<< endl;
+   cin >> hour1 >> min1 >> sec1;
+
+   cout << "Enter time period 2" << endl;
+   cout << "Enter hours, minutes and seconds respectively: "<< endl;
+   cin >> hour2 >> min2 >> sec2;
+
+   if(sec2 > sec1) 
+{
+      min1--;
+      sec1 += 60;
+}
+
+   diff_second = sec1 - sec2;
+
+   if(min2 > min1)
+{
+      hour1--;
+      min1 += 60;
+}
+   diff_minute = min1 - min2;
+   diff_hour = hour1 - hour2;
+
+   cout <<"Time Difference is "<< diff_hour <<":"<< diff_minute <<":"<<diff_second;
+
+   return 0;
+}

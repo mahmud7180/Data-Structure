@@ -1,0 +1,27 @@
+#include<iostream>
+using namespace std;
+
+struct node
+{
+    int value;
+    node *left;
+    node *right;
+};
+
+struct node* newnode (int data)
+{
+   struct node* node=new struct node();
+    node->value=data;
+    node->left= NULL;
+    node->right= NULL;
+    return node;
+};
+
+main()
+{
+    node *root= newnode(10);
+    root->left=newnode(20);
+    root->right=newnode(30);
+    cout<<"left="<<root->left->value<<endl;
+    cout<<"right="<<root->right->value;
+}
